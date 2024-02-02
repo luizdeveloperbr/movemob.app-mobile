@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, Pressable } from 'react-native';
 
 export default function App() {
 
-  const [patrimonioID, setPatrimonioID] = useState(undefined)
+  const [patrimonioID, setPatrimonioID] = useState("")
   return (
     <View style={styles.container}>
       <View>
