@@ -1,5 +1,5 @@
 import Reac, { Component } from 'react'
-import { StyleSheet ,View, TextInput, Text, Pressable } from 'react-native'
+import { StyleSheet, View, TextInput, Text, Pressable } from 'react-native'
 
 
 export default class InputPatrimonioId extends Component {
@@ -19,14 +19,18 @@ export default class InputPatrimonioId extends Component {
   };
 
   render(): Reac.ReactNode {
-    return <View>
+    return <View style={
+      {
+        height: 85,
+      }}
+    >
       <TextInput
         ref={comp => this.inputRef = comp}
         style={styles.input_id}
         onSubmitEditing={(e) => this.handleInputId(e)}
         inputMode='numeric'
       />
-      <Text>{this.state.id}</Text>
+      {/* <Text>{this.state.id}</Text> */}
 
       <View style={{
         flex: 1,
@@ -44,7 +48,7 @@ export default class InputPatrimonioId extends Component {
         <Pressable
           style={styles.button_focus}
           onPress={() => this.inputRef.focus()}>
-          <Text>Focus</Text>
+          <Text>Buscar</Text>
         </Pressable>
       </View>
     </View>
