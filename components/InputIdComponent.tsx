@@ -1,8 +1,11 @@
 import { useRef } from 'react'
 import { StyleSheet, View, TextInput, Text, Pressable, NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native'
-
+import { useLinkTo } from "@react-navigation/native";
+import { MaterialIcons } from '@expo/vector-icons'
 
 export default function ComponentInputID({ setStateProp }: { setStateProp: React.Dispatch<React.SetStateAction<number | undefined>> }) {
+
+  let goToPage = useLinkTo()
 
   const inputRef = useRef<TextInput | null>(null);
 
@@ -16,12 +19,20 @@ export default function ComponentInputID({ setStateProp }: { setStateProp: React
         height: 85,
       }}
     >
-      <TextInput
-        ref={comp => inputRef.current = comp}
-        style={UI_TextIput.id}
-        onSubmitEditing={(e) => handleInputId(e)}
-        inputMode='numeric'
-      />
+      <View style={{flex: 1, flexDirection: 'row', alignContent: 'center'}}>
+        <TextInput
+          ref={comp => inputRef.current = comp}
+          style={UI_TextIput.id}
+          onSubmitEditing={(e) => handleInputId(e)}
+          inputMode='numeric'
+        />
+        <Pressable
+        style={{backgroundColor: 'white'}}
+          onPress={() => goToPage('/camera')}
+        >
+          <MaterialIcons name='camera-enhance' size={36} />
+        </Pressable>
+      </View>
       <View style={{
         flex: 1,
         gap: 10,
@@ -30,12 +41,12 @@ export default function ComponentInputID({ setStateProp }: { setStateProp: React
       }}>
 
         <Pressable
-          style={StyleSheet.compose(UI_Button.base,{backgroundColor: 'red'})}
+          style={StyleSheet.compose(UI_Button.base, { backgroundColor: 'red' })}
           onPress={() => inputRef.current?.clear()}>
           <Text>Limpar</Text>
         </Pressable>
         <Pressable
-          style={StyleSheet.compose(UI_Button.base,{backgroundColor: 'lime'})}
+          style={StyleSheet.compose(UI_Button.base, { backgroundColor: 'lime' })}
           onPress={() => inputRef.current?.focus()}
         >
           <Text>Buscar</Text>
@@ -61,7 +72,7 @@ const UI_TextIput = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 2,
     borderStyle: 'solid',
-    marginRight: 5,
+    // marginRight: 5,
     marginLeft: 5,
     marginBottom: 10,
     minWidth: 300,

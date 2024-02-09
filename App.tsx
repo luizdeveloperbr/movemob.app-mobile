@@ -1,46 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { getDataHook } from './hooks'
-import { StyleSheet, Text, View } from 'react-native';
-import InputIDPatrimonio from './components/InputIdComponent';
-import { useEffect, useState } from 'react';
-import type { EquipamentoDetailsType } from './@types/equipamento_details.d';
-import EquipamentoDisplayDetails from './components/EquipamentoDisplayDetails';
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ConsultaPage from './pages/consulta_page';
+import CameraPage from './pages/camera_page';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [id, setId] = useState<number | undefined>(undefined);
-
-  const [loadingState, toggleLoading] = useState<boolean>(true)
-
-  const [equipamentoDetails, setEquipamentoDetails] = useState<EquipamentoDetailsType | undefined>(undefined);
-
-  useEffect(() => {
-    getDataHook({getId: id, setState: setEquipamentoDetails, setLoadingState:toggleLoading})
-  }, [id]);
-
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.text}>CONSULTA DE PATRIMONIO</Text>
-      </View>
-      <InputIDPatrimonio setStateProp={setId} />
-
-      <EquipamentoDisplayDetails getInfoProp={equipamentoDetails} showSpinner={loadingState}/>
-
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+        <Stack.Screen name='consulta' options={{title: "Consulta de Patrimônio"}} component={ConsultaPage} />
+        <Stack.Screen name='camera' options={{title: "Aponte para o Cod. de Barras"}} component={CameraPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    padding: 20,
-    alignItems: 'center'
-  },
-  text: {
-    marginTop: 50,
-    marginBottom: 10,
-    fontSize: 25,
-  }
-});
