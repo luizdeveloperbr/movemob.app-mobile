@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, Text, Pressable, NativeSyntheticEvent, Tex
 import { useLinkTo } from "@react-navigation/native";
 import { MaterialIcons } from '@expo/vector-icons'
 
-export default function ComponentInputID({ setStateProp }: { setStateProp: React.Dispatch<React.SetStateAction<number | undefined>> }) {
+export default function ComponentInputID({ setIdProp }: { setIdProp: React.Dispatch<React.SetStateAction<number | undefined>> }) {
 
   let goToPage = useLinkTo()
 
@@ -11,7 +11,7 @@ export default function ComponentInputID({ setStateProp }: { setStateProp: React
 
   function handleInputId(e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) {
     const id: string = e.nativeEvent.text.trim().replaceAll(/[a-zA-Z-., ]/g, "")
-    setStateProp(Number(id))
+    setIdProp(Number(id))
   };
   return (
     <View style={
@@ -19,7 +19,7 @@ export default function ComponentInputID({ setStateProp }: { setStateProp: React
         height: 85,
       }}
     >
-      <View style={{flex: 1, flexDirection: 'row', alignContent: 'center'}}>
+      <View style={{flex: 1, flexDirection: 'row', alignContent: 'center', marginBottom: 10}}>
         <TextInput
           ref={comp => inputRef.current = comp}
           style={UI_TextIput.id}
@@ -74,7 +74,7 @@ const UI_TextIput = StyleSheet.create({
     borderStyle: 'solid',
     // marginRight: 5,
     marginLeft: 5,
-    marginBottom: 10,
+    // marginBottom: 10,
     minWidth: 300,
     paddingLeft: 8
   }
