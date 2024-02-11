@@ -27,7 +27,7 @@ export default function ComponentInputID({ setIdProp }: { setIdProp: React.Dispa
           inputMode='numeric'
         />
         <Pressable
-        style={{backgroundColor: 'white'}}
+        style={{backgroundColor: 'white', borderColor:'#000',borderWidth: 1,borderStyle: 'solid', borderRadius: 2, borderLeftWidth: 0}}
           onPress={() => goToPage('/camera')}
         >
           <MaterialIcons name='camera-enhance' size={36} />
@@ -70,8 +70,10 @@ const UI_Button = StyleSheet.create({
 const UI_TextIput = StyleSheet.create({
   id: {
     borderColor: '#000',
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: 'solid',
+    borderRadius: 2,
+    borderRightWidth: 0,
     // marginRight: 5,
     marginLeft: 5,
     // marginBottom: 10,

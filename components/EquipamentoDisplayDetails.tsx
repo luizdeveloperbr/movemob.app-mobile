@@ -2,21 +2,14 @@ import React from "react"
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native"
 import { EquipamentoDetailsType } from "../@types/equipamento_details.d"
 
-const EquipamentoDisplayDetalComponent = ({ getInfoProp }: { getInfoProp: EquipamentoDetailsType | undefined}) => {
+const EquipamentoDisplayDetalComponent = ({ getInfoProp }: { getInfoProp: EquipamentoDetailsType | undefined }) => {
   return (
-    <View style={StyleSheet.compose(devStyle.border, {
-      backgroundColor: 'honeydew',
-      width: '100%',
-      elevation: 4,
-      height: 180,
-      padding: 16,
-      marginTop: 5
-    })} >
+    <React.Fragment>
       <Text style={{
         fontWeight: 'bold',
         fontSize: 20,
         textAlign: 'right',
-      }}>Patrimonio:  {getInfoProp?.id ?? <ActivityIndicator size={"large"} />}</Text>
+      }}>Patrimonio:  {getInfoProp?.id ?? ""}</Text>
       <Text style={{ paddingBottom: 8 }}>{getInfoProp?.descricao ?? ""}</Text>
       <View style={{
         minHeight: 30,
@@ -37,7 +30,7 @@ const EquipamentoDisplayDetalComponent = ({ getInfoProp }: { getInfoProp: Equipa
         <Text style={StyleSheet.compose(devStyle.border, { paddingTop: 10, height: '100%', width: '33%', textAlign: 'center' })}>Codigo: {getInfoProp?.codigo ?? ""}</Text>
         <Text style={StyleSheet.compose(devStyle.border, { paddingTop: 10, height: '100%', width: '33%', textAlign: 'center' })}>Valor: {getInfoProp?.valor ?? ""}</Text>
       </View>
-    </View>
+    </React.Fragment>
   )
 }
 
